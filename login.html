@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PZSian20 Database</title>
+    <link rel="icon" href="img/apple-touch-icon.png" type="image/png">
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Login</h1>
+        <form id="login-form">
+            <input type="text" id="username" placeholder="Username" name="username" required>
+            <input type="password" id="password" placeholder="Password" name="password" required>
+            <button type="button" onclick="login()">Login</button>
+        </form>
+
+    </div>
+    
+    <script>
+        function login() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+    
+            // Make an API request to your Google Apps Script web app.
+            var apiUrl = 'https://script.google.com/macros/s/AKfycbzcXys75p0Ok01v4dBf0zu3h7XboejfY7xFx8rMuCo0ocLMlsNHwK8FGHtmzGlSK5ba3g/exec?username=' + encodeURIComponent(username) + '&password=' + encodeURIComponent(password);
+    
+            fetch(apiUrl)
+                .then(response => response.text())
+                .then(data => {
+                    if (data === 'Login successful') {
+                        window.location.href = 'home.html' ; // Replace with your desired URL.
+    
+    
+                    } else {
+                        alert('Login failed. Please check your credentials.');
+    
+                    }
+                })
+                .catch(error => {
+                    console.error('API request error:', error);
+                });
+        }
+    </script>
+</body>
+</html>
